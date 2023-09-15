@@ -1,8 +1,9 @@
-const { Videogames } = require('../db');
+const axios = require('axios');
+const { Videogame, Genre } = require('../db');
 const { API_URL, API_KEY } = process.env;
 
 const getAllGames = async () => {
-  const dbVGames = await Videogames.findAll({
+  const dbVGames = await Videogame.findAll({
     attributes: ["id", "name", "image", "rating"],
     include: [
       {
