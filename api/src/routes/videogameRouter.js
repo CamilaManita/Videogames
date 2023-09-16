@@ -4,6 +4,7 @@ const gameRouter = Router();
 
 const getAllGames = require('../controllers/getVideogames.controllers');
 const getByName = require('../controllers/getByName.controller')
+const getById = require('../controllers/getById.controllers')
 
 gameRouter.get('/', async (req, res) => {
     const { name } = req.query;
@@ -24,5 +25,15 @@ gameRouter.get('/', async (req, res) => {
         return res.status(500).send(error.message);
     }
 });
+
+gameRouter.get('/:id', async (req,res) => {
+    const { id } = req.params;
+    try {
+        const game = await getById(id);
+        return res.status(200).json(game)
+    } catch (error) {
+        return res.status(400).send(error.message)
+    }
+})
 
 module.exports = gameRouter;

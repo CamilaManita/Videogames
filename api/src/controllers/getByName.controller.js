@@ -28,6 +28,7 @@ const foundDbVGames = await Videogame.findAll({
   );
   const foundApiVGames = axiosResponse.data.results.map((vg) => {
     return {
+      id: vg.name,
       name: vg.name,
       image: vg.background_image,
       genres: vg.genres.map((g) => {
