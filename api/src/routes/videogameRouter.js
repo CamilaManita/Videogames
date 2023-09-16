@@ -2,13 +2,13 @@ const { Router } = require('express');
 
 const gameRouter = Router();
 
-const getAllVideogames = require('../controllers/getVideogames.controllers');
+const getAllGames = require('../controllers/getVideogames.controllers');
 
 gameRouter.get('/', async (req, res) => {
     const {name} = req.query;
     try {
         if(!name) {
-            const response = await getAllVideogames();
+            const response = await getAllGames();
             return res.status(200).json(response)
         }
 
