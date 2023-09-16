@@ -1,9 +1,9 @@
-const { Router } = require('express')
+const { Router } = require('express');
 
 const genreRouter = Router();
 
-const { Genre } = require('../db');
 const getGenre = require('../controllers/getGenres.controllers');
+const { Genre } = require('../db');
 
 genreRouter.get('/', async (req,res) => {
     try {
