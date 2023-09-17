@@ -5,7 +5,7 @@ const { Videogame, Genre } = require("../db");
 const { Op } = require("sequelize");
 
 const getByName = async (name) => {
-const foundDbVGames = await Videogame.findAll({
+  const foundDbVGames = await Videogame.findAll({
     attributes: ["id", "image", "name"],
     include: [
       {
@@ -34,7 +34,7 @@ const foundDbVGames = await Videogame.findAll({
       genres: vg.genres.map((g) => {
         return { name: g.name };
       }),
-      rating: vg.rating
+      rating: vg.rating,
     };
   });
 

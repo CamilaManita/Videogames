@@ -5,6 +5,7 @@ const gameRouter = Router();
 const getAllGames = require('../controllers/getVideogames.controllers');
 const getByName = require('../controllers/getByName.controller')
 const getById = require('../controllers/getById.controllers')
+const postVideogame = require('../controllers/post.controllers')
 
 gameRouter.get('/', async (req, res) => {
     const { name } = req.query;
@@ -33,6 +34,20 @@ gameRouter.get('/:id', async (req,res) => {
         return res.status(200).json(game)
     } catch (error) {
         return res.status(400).send(error.message)
+    }
+})
+
+gameRouter.post('/', async (req,res) => {
+    const { name, description, releaseDate, rating, platforms, image, genres } = req.body;
+
+    try {
+        const newVideogame = await postVideogame(
+            name, description, releaseDate, rating, platforms, image, genres
+        )
+
+        return res.status(200).json(newVideogame);
+    } catch (error) {
+        res.status(404).send(error.message);
     }
 })
 
