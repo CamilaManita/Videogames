@@ -1,23 +1,66 @@
-const { Videogame } = require('../db');
+const { Videogame, Genre } = require("../db");
 
-const postVideogame = async ( name, description, platforms, image, releaseDate, rating, genres ) => {
-  if ( !name || !description || !platforms || !image || !releaseDate || !rating || !genres )
-
-  throw new Error('There is not all the required information');
+const postVideogame = async (
+  name,
+  description,
+  released,
+  rating,
+  platforms,
+  image,
+  genres
+) => {
+  if (
+    !name ||
+    !description ||
+    !released ||
+    !rating ||
+    !platforms ||
+    !image ||
+    !genres
+  )
+    throw new Error("There is not all the required information");
 
   const existVideogame = await Videogame.findOne({
-    where: { name: name }
+    where: { name: name },
   });
 
-  if (existVideogame) throw new Error("The name of this videogame already exists, please try another name");
+  if (existVideogame)
+    throw new Error(
+      "The name of this videogame already exists, please try another name"
+    );
+
+  const genreIds = genres.map((genre) => genre.id);
+  const existingGenres = await Genre.findAll({
+    where: { id: genreIds },
+  });
 
   const newVideogame = await Videogame.create({
-    name, description, platforms, image, releaseDate, rating
+    name,
+    description,
+    released,
+    rating,
+    platforms,
+    image,
   });
 
-  await newVideogame.addGenres(genres);
+  // Asocia los géneros al videojuego
+  await newVideogame.addGenres(existingGenres);
 
-  return newVideogame;
-}
+  // Formatea la respuesta JSON
+  const formattedResponse = {
+    name: newVideogame.name,
+    description: newVideogame.description,
+    image: newVideogame.image,
+    rating: newVideogame.rating,
+    platforms: newVideogame.platforms,
+    genres: existingGenres.map((genre) => ({
+      id: genre.id,
+      name: genre.name,
+    })),
+    released: newVideogame.released,
+  };
+
+  return formattedResponse;
+};
 
 module.exports = postVideogame;

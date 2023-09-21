@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const { API_URL, API_KEY } = process.env;
-const { Videogame, Genre } = ('../db.js');
+const { Videogame, Genre } = require('../db');
 
 const getById = async (id) => {
     if(!isNaN(id)){
@@ -23,18 +23,17 @@ const getById = async (id) => {
         }
     } else {
         const responseDB = await Videogame.findByPk(id, {
-            include: {
-                model: Genre,
-                attributes: ['name'],
-                through: {
-                    attributes: []
-                }
-            }
+            include: [
+                {
+                  model: Genre,
+                  attributes: ['name'],
+                },
+              ],
         })
 
         if (responseDB) {
             return {...responseDB.toJSON(),
-            genres: responseDB.genres.map((genre) => genre.name)}
+            genres: responseDB.genres.map((genre) => ({ name: genre.name }))}
         }
 
         return 'No se encontro el videojuego';
