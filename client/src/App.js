@@ -1,9 +1,13 @@
 import './App.css';
+import React from 'react';
+// import { Routes, Route, useLocation } from 'react-router-dom';
 
 function App() {
+  // const location = useLocation();
+
   return (
     <div className="App">
-      <h1>Henry Videogames</h1>
+      <h1>Videogames</h1>
     </div>
   );
 }
