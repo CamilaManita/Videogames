@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Home, Landing, Detail, Form } from './Views';
+import { Home, Landing, Detail, Form } from './views';
 
 function App() {
   // const location = useLocation();
