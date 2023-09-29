@@ -1,4 +1,4 @@
-export const GET_POKEMONS = 'GET_POKEMONS';
+export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
 export const GET_DETAIL = 'GET_DETAIL';
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
 export const GET_TYPES = 'GET_TYPES';
