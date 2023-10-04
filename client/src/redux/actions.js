@@ -43,6 +43,10 @@ export const getGenres = () => {
     }
 }
 
+export const filter = (genre) => {
+    return { type: FILTER_GENRE, payload: genre }
+}
+
 export const cleanDetail = () => {
     return { type: CLEAN_DETAIL }
 };
