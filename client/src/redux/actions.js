@@ -43,6 +43,17 @@ export const getGenres = () => {
     }
 }
 
+export const postVideogame = (newVideogame) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/games/`, newVideogame)
+            return dispatch({ type: POST_VIDEOGAME, payload: data});
+        } catch (error) {
+            return error.message;
+        }
+    }
+}
+
 export const filter = (genre) => {
     return { type: FILTER_GENRE, payload: genre }
 }
