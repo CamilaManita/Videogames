@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-    GET_VIDEOGAMES, GET_DETAIL, CLEAN_DETAIL, GET_TYPES, GET_NAME, POST_VIDEOGAME, FILTER_TYPE, ORDER, CREATE
+    GET_VIDEOGAMES, GET_DETAIL, CLEAN_DETAIL, GET_GENRES, GET_NAME, POST_VIDEOGAME, FILTER_GENRE, ORDER, CREATE
 } from './actions_types';
 
 export const getVideogame = () => {
@@ -17,6 +17,21 @@ export const getDetail = (id) => {
             dispatch({ type: GET_DETAIL, payload: data});
         } catch (error) {
             return [];
+        }
+    }
+}
+
+export const getName = (name) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/games?name=${name}`);
+            dispatch({ type: GET_NAME, payload: data});
+        } catch (error) {
+            const errorData = {
+                message: 'Error: Pokemon not found',
+                status: error.response ? error.response.status : null
+            };
+            throw errorData;
         }
     }
 }
