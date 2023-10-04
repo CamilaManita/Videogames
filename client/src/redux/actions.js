@@ -28,3 +28,7 @@ export const cleanDetail = () => {
 export const order = (order) => {
     return { type: ORDER, payload: order}
 }
+
+export const create = (create) => {
+    return { type: CREATE, payload: create }
+}
