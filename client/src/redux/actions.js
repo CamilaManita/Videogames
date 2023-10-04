@@ -36,6 +36,13 @@ export const getName = (name) => {
     }
 }
 
+export const getGenres = () => {
+    return async function (dispatch) {
+        const { data } = await axios.get(`http://localhost:3001/genres`);
+        dispatch({ type: GET_GENRES, payload: data});
+    }
+}
+
 export const cleanDetail = () => {
     return { type: CLEAN_DETAIL }
 };
