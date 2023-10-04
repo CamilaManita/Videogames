@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-    GET_VIDEOGAMES, GET_DETAIL, CLEAN_DETAIL, GET_GENRES, GET_NAME, POST_VIDEOGAME, FILTER_GENRE, ORDER, CREATE
+    GET_VIDEOGAMES, GET_DETAIL, CLEAN_DETAIL, GET_GENRES, GET_NAME, POST_VIDEOGAME, FILTER_GENRE, ORDER, CREATE, ORDER_RATING, FILTER_PLATFORMS
 } from './actions_types';
 
 export const getVideogame = () => {
@@ -58,12 +58,20 @@ export const filter = (genre) => {
     return { type: FILTER_GENRE, payload: genre }
 }
 
+export const filterPlatforms = (platforms) => {
+    return { type: FILTER_PLATFORMS, payload: platforms }
+}
+
 export const cleanDetail = () => {
     return { type: CLEAN_DETAIL }
 };
 
 export const order = (order) => {
     return { type: ORDER, payload: order}
+}
+
+export const orderRating = (order) => {
+    return { type: ORDER_RATING, payload: order }
 }
 
 export const create = (create) => {
