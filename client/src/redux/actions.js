@@ -20,3 +20,8 @@ export const getDetail = (id) => {
         }
     }
 }
+
+export const cleanDetail = () => {
+    return { type: CLEAN_DETAIL }
+};
+
