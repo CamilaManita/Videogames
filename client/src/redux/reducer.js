@@ -23,6 +23,9 @@ const reducer = (state = initialState, action) => {
         case GET_NAME:
             return { ...state, videogames: [action.payload]}
 
+        case GET_GENRES:
+            return { ...state, videogamesGenres: action.payload}
+            
         default:
             return { ...state};
     }
