@@ -47,20 +47,21 @@ const postVideogame = async (
   await newVideogame.addGenres(existingGenres);
 
   // Formatea la respuesta JSON
-  const formattedResponse = {
-    name: newVideogame.name,
-    description: newVideogame.description,
-    image: newVideogame.image,
-    rating: newVideogame.rating,
-    platforms: newVideogame.platforms,
-    genres: existingGenres.map((genre) => ({
-      id: genre.id,
-      name: genre.name,
-    })),
-    released: newVideogame.released,
-  };
+  // const formattedResponse = {
+  //   name: newVideogame.name,
+  //   description: newVideogame.description,
+  //   image: newVideogame.image,
+  //   rating: newVideogame.rating,
+  //   platforms: newVideogame.platforms,
+  //   genres: existingGenres.map((genre) => ({
+  //     id: genre.id,
+  //     name: genre.name,
+  //   })),
+  //   released: newVideogame.released,
+  // };
 
-  return formattedResponse;
+  // return formattedResponse;
+  return newVideogame;
 };
 
 module.exports = postVideogame;
