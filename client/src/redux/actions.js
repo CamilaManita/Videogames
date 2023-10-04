@@ -25,3 +25,6 @@ export const cleanDetail = () => {
     return { type: CLEAN_DETAIL }
 };
 
+export const order = (order) => {
+    return { type: ORDER, payload: order}
+}
