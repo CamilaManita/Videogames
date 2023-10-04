@@ -25,7 +25,10 @@ const reducer = (state = initialState, action) => {
 
         case GET_GENRES:
             return { ...state, videogamesGenres: action.payload}
-            
+        
+        case POST_VIDEOGAME: 
+            return { ...state }
+
         default:
             return { ...state};
     }
