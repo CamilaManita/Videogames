@@ -17,6 +17,8 @@ const reducer = (state = initialState, action) => {
                 videogames: action.payload,
                 allVideogames: action.payload
             };
+        case GET_DETAIL:
+            return { ...state, videogameDetail: action.payload}        
     
         default:
             return { ...state};
