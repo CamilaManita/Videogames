@@ -29,6 +29,12 @@ const reducer = (state = initialState, action) => {
         case POST_VIDEOGAME: 
             return { ...state }
 
+        case CLEAN_DETAIL: 
+            return {
+                ...state,
+                videogameDetail: {}
+            }
+
         default:
             return { ...state};
     }
