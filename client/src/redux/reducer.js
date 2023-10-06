@@ -35,6 +35,17 @@ const reducer = (state = initialState, action) => {
                 videogameDetail: {}
             }
 
+        case ORDER:
+            const gamesOrdered = [...state.videogames];
+
+            return {
+                ...state,
+                videogames:
+                    action.payload === 'Ascendant'
+                        ? gamesOrdered.sort((a, b) => a.id - b.id)
+                        : gamesOrdered.sort((a, b) => b.id - a.id)
+            }
+
         default:
             return { ...state};
     }
