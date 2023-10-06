@@ -55,6 +55,21 @@ const reducer = (state = initialState, action) => {
                         : gamesOrderedRate.sort((a, b) => b.rating - a.rating)
             }
 
+        case CREATE: 
+            const videogameCreated = state.allVideogames;
+            const videogameFilter = action.payload === 'Creado'
+                ? videogameCreated.filter((game) => game.createdInDB)
+                : videogameCreated.filter((game) => !game.createdInDB)
+            
+            return {
+                ...state, videogames:
+                    action.payload === 'All'
+                    ? videogameCreated
+                    : videogameFilter.length
+                    ? videogameFilter
+                    : []
+            }
+
         default:
             return { ...state};
     }
