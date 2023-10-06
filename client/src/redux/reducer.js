@@ -39,11 +39,20 @@ const reducer = (state = initialState, action) => {
             const gamesOrdered = [...state.videogames];
 
             return {
-                ...state,
-                videogames:
+                ...state, videogames:
                     action.payload === 'Ascendant'
                         ? gamesOrdered.sort((a, b) => a.id - b.id)
                         : gamesOrdered.sort((a, b) => b.id - a.id)
+            }
+
+        case ORDER_RATING:
+            const gamesOrderedRate = [...state.videogames];
+
+            return {
+                ...state, videogames: 
+                    action.payload === 'Worst-rating'
+                        ? gamesOrderedRate.sort((a, b) => a.rating - b.rating)
+                        : gamesOrderedRate.sort((a, b) => b.rating - a.rating)
             }
 
         default:
