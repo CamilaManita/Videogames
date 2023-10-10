@@ -85,6 +85,20 @@ const reducer = (state = initialState, action) => {
                 videogames: games.filter((el) => el.genres.includes(action.payload))
             };
 
+        case FILTER_PLATFORMS:
+            const gamesPlatforms = [...state.allVideogames];
+
+            if (action.payload === 'All plarforms') {
+                return {
+                    ...state,
+                    videogames: state.allVideogames
+                }
+            }
+            return {
+                ...state,
+                videogames: gamesPlatforms.filter((el) => el.platforms.includes(action.payload))
+            }
+
         default:
             return { ...state};
     }
