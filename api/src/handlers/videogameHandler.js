@@ -1,3 +1,5 @@
+const { Genre, Videogame } = require('../db');
+
 const getAllGames = require("../controllers/getVideogames.controllers");
 const getByName = require("../controllers/getByName.controller");
 const getById = require("../controllers/getById.controllers");
@@ -34,7 +36,7 @@ const getId = async (req, res) => {
 }
 
 const postGame = async (req, res) => {
-    const { name, description, released, rating, platforms, image, genres } =
+    const { name, description, released, rating, platforms, image, created, genres } =
     req.body;
 
   try {
@@ -45,6 +47,7 @@ const postGame = async (req, res) => {
       rating,
       platforms,
       image,
+      created,
       genres
     );
 
@@ -53,5 +56,18 @@ const postGame = async (req, res) => {
     res.status(404).send(error.message);
   }
 }
+
+// const updateVideogame = async (req, res) => {
+//   const { name, description, platforms, released, rating, image, genres} = req.body
+//   const { id } = req.params
+
+//   try {
+//     const updatedVideogame = await Videogame.update(
+//       { name, description, platforms, released, created, }
+//     )
+//   } catch (error) {
+    
+//   }
+// }
 
 module.exports = { getAll, getId, postGame};
