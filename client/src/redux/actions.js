@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-    GET_VIDEOGAMES, GET_DETAIL, CLEAN_DETAIL, GET_GENRES, GET_NAME, POST_VIDEOGAME, FILTER_GENRE, ORDER, CREATE, ORDER_RATING, FILTER_PLATFORMS, EDIT_VIDEOGAME
+    GET_VIDEOGAMES, GET_DETAIL, CLEAN_DETAIL, GET_GENRES, GET_NAME, POST_VIDEOGAME, FILTER_GENRE, ORDER, CREATE, ORDER_RATING, FILTER_PLATFORMS, EDIT_VIDEOGAME, DELETE_VIDEOGAME
 } from './actions_types';
 
 export const getVideogame = () => {
@@ -91,4 +91,18 @@ export const updateVideogame = async (id, game) => {
         return error.message
     }
  }   
+}
+
+export const deleteVideogame = (id) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.delete(`http://localhost:3001/games/${id}`)
+            return dispatch({
+                type: DELETE_VIDEOGAME,
+                payload: data
+            })
+        } catch (error) {
+            return error.message
+        }
+    }
 }
