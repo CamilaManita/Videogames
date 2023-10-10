@@ -70,6 +70,21 @@ const reducer = (state = initialState, action) => {
                     : []
             }
 
+        case FILTER_GENRE:
+            const games = [...state.allVideogames];
+
+            if (action.payload === 'All genres') {
+                return {
+                    ...state, 
+                    videogames: state.allVideogames
+                }
+            }
+
+            return {
+                ...state,
+                videogames: games.filter((el) => el.genres.includes(action.payload))
+            };
+
         default:
             return { ...state};
     }
