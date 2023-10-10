@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-    GET_VIDEOGAMES, GET_DETAIL, CLEAN_DETAIL, GET_GENRES, GET_NAME, POST_VIDEOGAME, FILTER_GENRE, ORDER, CREATE, ORDER_RATING, FILTER_PLATFORMS
+    GET_VIDEOGAMES, GET_DETAIL, CLEAN_DETAIL, GET_GENRES, GET_NAME, POST_VIDEOGAME, FILTER_GENRE, ORDER, CREATE, ORDER_RATING, FILTER_PLATFORMS, EDIT_VIDEOGAME
 } from './actions_types';
 
 export const getVideogame = () => {
@@ -76,4 +76,19 @@ export const orderRating = (order) => {
 
 export const create = (create) => {
     return { type: CREATE, payload: create }
+}
+
+export const updateVideogame = async (id, game) => {
+ return async (dispatch) => {
+    try {
+        const { data } = await axios.put(`http://localhost:3001/games/${id}`, game)
+
+        return dispatch({
+            type: EDIT_VIDEOGAME,
+            payload: data
+        })
+    } catch (error) {
+        return error.message
+    }
+ }   
 }
