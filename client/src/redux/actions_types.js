@@ -9,3 +9,5 @@ export const ORDER = 'ORDER';
 export const CREATE = 'CREATE';
 export const ORDER_RATING = 'ORDER_RATING';
 export const FILTER_PLATFORMS = 'FILTER_PLATFORMS';
+export const EDIT_VIDEOGAME = 'EDIT_VIDEOGAME';
+export const DELETE_VIDEOGAME = 'DELETE_VIDEOGAME'
