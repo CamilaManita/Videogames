@@ -57,17 +57,37 @@ const postGame = async (req, res) => {
   }
 }
 
-// const updateVideogame = async (req, res) => {
-//   const { name, description, platforms, released, rating, image, genres} = req.body
-//   const { id } = req.params
+const updateVideogame = async (req, res) => {
+  const { name, description, platforms, released, rating, image, created, genres} = req.body
+  const { id } = req.params
 
-//   try {
-//     const updatedVideogame = await Videogame.update(
-//       { name, description, platforms, released, created, }
-//     )
-//   } catch (error) {
-    
-//   }
-// }
+  try {
+    const updatedVideogame = await Videogame.update(
+      { name, description, platforms, released, rating, image, created, genres },
+      {
+        where: {id}
+      }
+    );
+
+    if (updatedVideogame[0] === 0) {
+      return res.status(404).json('videogame not found')
+    }
+
+    const genreNames = await Genre.findAll({
+      where: {
+        name: genres
+      }
+    })
+
+    const videogame = await Videogame.findByPk(id);
+    await videogame.setGenres(genreNames);
+
+    res.status(200).json({
+      message: 'Videogame successfully updated'
+    })
+  } catch (error) {
+    res.status(400).send({ error: error.message})
+  }
+}
 
 module.exports = { getAll, getId, postGame};
