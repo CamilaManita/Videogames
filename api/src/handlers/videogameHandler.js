@@ -90,4 +90,18 @@ const updateVideogame = async (req, res) => {
   }
 }
 
-module.exports = { getAll, getId, postGame};
+const deleteVideogame = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Videogame.destroy({ where: {id} })
+
+    res.json({
+      message: 'Game successfully deleted'
+    })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+module.exports = { getAll, getId, postGame, updateVideogame, deleteVideogame};
