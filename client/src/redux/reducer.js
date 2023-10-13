@@ -1,4 +1,4 @@
-import { GET_VIDEOGAMES, GET_DETAIL, CLEAN_DETAIL, GET_GENRES, GET_NAME, POST_VIDEOGAME, FILTER_GENRE, ORDER, CREATE, ORDER_RATING, FILTER_PLATFORMS } from "./actions_types";
+import { GET_VIDEOGAMES, GET_DETAIL, CLEAN_DETAIL, GET_GENRES, GET_NAME, POST_VIDEOGAME, FILTER_GENRE, ORDER, CREATE, ORDER_RATING, FILTER_PLATFORMS, EDIT_VIDEOGAME, DELETE_VIDEOGAME } from "./actions_types";
 
 const initialState = {
     allVideogames: [],
@@ -97,6 +97,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 videogames: gamesPlatforms.filter((el) => el.platforms.includes(action.payload))
+            }
+
+        case DELETE_VIDEOGAME:
+            return {
+                ...state,
+                videogames: action.payload
             }
 
         default:
