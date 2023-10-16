@@ -7,6 +7,7 @@ const postVideogame = async (
   rating,
   platforms,
   image,
+  created,
   genres
 ) => {
   if (
@@ -16,6 +17,7 @@ const postVideogame = async (
     !rating ||
     !platforms ||
     !image ||
+    created === undefined ||
     !genres
   )
     throw new Error("There is not all the required information");
