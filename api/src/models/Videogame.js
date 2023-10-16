@@ -48,8 +48,8 @@ module.exports = (sequelize) => {
       },
       created: {
         type: DataTypes.BOOLEAN,
+        allowNull: false,
         defaultValue: true,
-        allowNull: true,
         validate: {
           notEmpty: true,
         },
